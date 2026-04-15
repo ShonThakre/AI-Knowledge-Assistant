@@ -24,3 +24,5 @@ __pycache__/
 # Build files
 dist/
 build/
+
+__init__.py
