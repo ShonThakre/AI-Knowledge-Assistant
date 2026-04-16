@@ -9,3 +9,12 @@ def generate_with_ollama(prompt: str) -> str:
     )
 
     return response["message"]["content"]
+
+
+def get_embedding_ollama(text: str):
+    response = ollama.embeddings(
+        model="nomic-embed-text",
+        prompt=text
+    )
+
+    return response["embedding"]

@@ -1,0 +1,28 @@
+ai-knowledge-assistant/
+│
+├── app.py                     # main entry (run app)
+├── config.py                  # env + configs
+├── requirements.txt
+├── .env
+├── .gitignore
+│
+├── data/                      # input files
+│   └── sample.pdf
+│
+├── ingestion/                 # DATA → PINECONE
+│   ├── loader.py              # read pdf/text
+│   ├── chunker.py             # split into chunks
+│   ├── cleaner.py             # optional text cleaning
+│   └── store.py               # store in Pinecone
+│
+├── retrieval/                 # PINECONE SEARCH
+│   └── retriever.py
+│
+├── generation/                # LLM (GPT)
+│   └── generator.py
+│
+├── pipeline/                  # CONNECT EVERYTHING
+│   └── rag_pipeline.py
+│
+└── utils/
+    └── helpers.py

@@ -1,33 +1,30 @@
 from config import LLM_PROVIDER
 from generation.ollama_client import generate_with_ollama
-
-# optional OpenAI
-from generation.openai_client import client as openai_client
+from generation.openai_client import generate_with_openai
 
 
-def generate_answer(query, context):
+def generate_answer(query: str, context: str):
     prompt = f"""
-    You are a helpful assistant.
+You are a helpful assistant.
 
-    Answer ONLY using the context below.
-    If not found, say "I don't know".
+Use ONLY the provided context to answer.
+Do NOT make up information.
+If the answer is not in the context, say "I don't know".
 
-    Context:
-    {context}
+Context:
+{context}
 
-    Question:
-    {query}
-    """
+Question:
+{query}
+
+Answer:
+"""
 
     if LLM_PROVIDER == "ollama":
         return generate_with_ollama(prompt)
 
     elif LLM_PROVIDER == "openai":
-        response = openai_client.chat.completions.create(
-            model="gpt-4.1-mini",
-            messages=[{"role": "user", "content": prompt}]
-        )
-        return response.choices[0].message.content
+        return generate_with_openai(prompt)
 
     else:
-        return "Invalid LLM provider"
+        raise ValueError("Invalid LLM provider")
