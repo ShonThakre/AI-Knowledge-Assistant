@@ -5,11 +5,14 @@ from generation.openai_client import generate_with_openai
 
 def generate_answer(query: str, context: str):
     prompt = f"""
-You are a helpful assistant.
+You are an AI assistant.
 
-Use ONLY the provided context to answer.
-Do NOT make up information.
-If the answer is not in the context, say "I don't know".
+Rules:
+- Answer ONLY from context
+- If partial info exists, answer using best available info
+- If question has typo, still try to answer
+- Be helpful, not overly strict
+- If nothing found, say "Not found in document"
 
 Context:
 {context}

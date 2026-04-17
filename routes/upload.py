@@ -9,6 +9,7 @@ router = APIRouter()
 @router.post("/upload")
 async def upload_document(file: UploadFile = File(...)):
     try:
+        print(f"Received file: {file.filename}")
         content = await file.read()
 
         text = load_file(content, file.filename)
