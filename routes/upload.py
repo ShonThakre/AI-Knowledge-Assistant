@@ -1,8 +1,6 @@
 from db.upsert_manager import upsert_chunks
 from fastapi import APIRouter, UploadFile, File, HTTPException
-from ingestion.chunker import chunk_text
-from ingestion.cleaner import clean_text
-from ingestion.loader import load_file
+from ingestion.fixed_size_chunking import chunk_text, load_file, clean_text
 
 router = APIRouter()
 
